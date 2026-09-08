@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cooling Action — THERMA</title>
+<meta name="description" content="Pilih area di Bali, baca kondisi termalnya, dan simulasikan intervensi pendinginan sebagai estimasi yang jujur.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b7de8e'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' font-family='sans-serif' font-weight='bold' fill='%230b0f0d'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="action">
+<a href="#main" class="skip-link">Lompat ke konten</a>
+<div id="navbar-slot"></div>
+<main id="main">
+<header class="page-header reveal">
+<h1 class="h-display">Cooling Action.</h1>
+<p class="lede">Pilih area, baca kondisi termal aktualnya, lalu aktifkan intervensi untuk melihat estimasi simulasi perubahannya.</p>
+</header>
+<section class="section" style="padding-top:0">
+<div class="action-layout">
+<div class="action-panel reveal">
+<div class="field">
+<label for="action-area">Wilayah</label>
+<select id="action-area" data-action-area></select>
+</div>
+<div data-action-condition aria-live="polite"></div>
+</div>
+<div class="action-result reveal">
+<h2 class="h-card">Intervensi</h2>
+<p class="caption">Estimasi simulasi, bukan hasil pengukuran lapangan.</p>
+<div class="intervention-grid" data-interventions></div>
+<div data-action-output aria-live="polite" style="display:flex;flex-direction:column;gap:12px"></div>
+</div>
+</div>
+<p class="sim-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Hasil berupa estimasi simulasi dari model sederhana berbasis kondisi awal area. Nilai aktual di lapangan dapat berbeda tergantung vegetasi, material, dan cuaca harian.</span></p>
+</section>
+</main>
+<div id="footer-slot"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="/js/store.js"></script>
+<script src="/js/weatherService.js"></script>
+<script src="/js/airQualityService.js"></script>
+<script src="/js/thermalService.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/coolingAction.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

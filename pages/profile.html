@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — THERMA</title>
+<meta name="description" content="Kelola informasi pribadi dan preferensi THERMA.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b7de8e'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' font-family='sans-serif' font-weight='bold' fill='%230b0f0d'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="profile">
+<a href="#main" class="skip-link">Lompat ke konten</a>
+<div id="navbar-slot"></div>
+<main id="main">
+<div class="profile-wrap">
+<div class="profile-head reveal">
+<span data-profile-avatar></span>
+<div>
+<div class="profile-name" data-profile-name>Memuat…</div>
+<div class="profile-email" data-profile-email></div>
+<div class="profile-joined" data-profile-joined></div>
+</div>
+</div>
+<section class="profile-section reveal" aria-labelledby="info-title">
+<h2 id="info-title">Informasi pribadi</h2>
+<form data-profile-form novalidate>
+<div class="field">
+<label for="profile-name-input">Nama</label>
+<input id="profile-name-input" type="text" autocomplete="name" required>
+<p class="field-error" data-err="name"></p>
+</div>
+<div class="field">
+<label for="profile-email-input">Email</label>
+<input id="profile-email-input" type="email" autocomplete="email" required>
+<p class="field-error" data-err="email"></p>
+</div>
+<p class="form-status" data-form-status role="status"></p>
+<button type="submit" class="btn btn-primary" data-submit>Simpan perubahan</button>
+</form>
+</section>
+<section class="profile-section reveal" aria-labelledby="photo-title">
+<h2 id="photo-title">Foto profil</h2>
+<div class="avatar-row">
+<label class="btn btn-outline btn-sm" for="avatar-input" style="cursor:pointer">Pilih foto</label>
+<input id="avatar-input" type="file" accept="image/*" class="sr-only" data-avatar-input>
+<button class="btn btn-ghost btn-sm" data-avatar-remove>Hapus foto</button>
+</div>
+<p class="caption">Foto disimpan lokal di peramban ini dengan ukuran yang disesuaikan.</p>
+<p class="form-status" data-avatar-status role="status"></p>
+</section>
+<section class="profile-section reveal" aria-labelledby="pref-title">
+<h2 id="pref-title">Preferensi</h2>
+<div class="field">
+<label for="pref-layer">Lapisan peta bawaan</label>
+<select id="pref-layer" data-pref-layer>
+<option value="temperature">Temperatur</option>
+<option value="humidity">Kelembapan</option>
+<option value="airquality">Kualitas udara</option>
+</select>
+</div>
+<div class="field">
+<label for="pref-area">Wilayah bawaan</label>
+<select id="pref-area" data-pref-area></select>
+</div>
+</section>
+<section class="profile-section reveal" aria-labelledby="account-title">
+<h2 id="account-title">Akun</h2>
+<button class="btn btn-outline" data-logout style="justify-content:center">Logout</button>
+</section>
+</div>
+</main>
+<div id="footer-slot"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="/js/store.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/profile.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

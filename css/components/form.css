@@ -1,0 +1,72 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-md);
+}
+
+.field label {
+  font-size: var(--font-label);
+  font-weight: var(--weight-semibold);
+  color: var(--text-1);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  color: var(--text-0);
+  font-size: var(--font-body-size);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-2);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--lime-400);
+  box-shadow: 0 0 0 3px rgba(183, 222, 142, 0.15);
+}
+
+.field input.is-invalid,
+.field select.is-invalid {
+  border-color: var(--heat-critical);
+}
+
+.field-error {
+  font-size: var(--font-label);
+  color: var(--heat-critical);
+  min-height: 16px;
+}
+
+.field-hint {
+  font-size: var(--font-label);
+  color: var(--text-2);
+}
+
+.form-status {
+  font-size: var(--font-small);
+  min-height: 20px;
+}
+
+.form-status.is-success {
+  color: var(--lime-400);
+}
+
+.form-status.is-error {
+  color: var(--heat-critical);
+}

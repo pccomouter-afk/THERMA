@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @import 'base/variables.css';
 @import 'base/reset.css';
@@ -12,24 +12,15 @@
 @import 'components/loader.css';
 @import 'components/navbar.css';
 @import 'components/footer.css';
+@import 'components/form.css';
+@import 'components/bottom-nav.css';
 
-@import 'sections/hero.css';
-@import 'sections/heatmap.css';
-@import 'sections/route.css';
-@import 'sections/simulator.css';
-@import 'sections/community.css';
-@import 'sections/impact.css';
-@import 'sections/portfolio.css';
-@import 'sections/sensor-node.css';
-@import 'sections/data-flow.css';
-@import 'sections/cooler-route-finder.css';
-@import 'sections/hotspot-detail.css';
-@import 'sections/historical-trend.css';
+@import 'sections/therma-map.css';
+@import 'sections/therma-home.css';
 
 @import 'pages/page-header.css';
-@import 'pages/heatmap-page.css';
 @import 'pages/route-page.css';
 @import 'pages/simulator-page.css';
-@import 'pages/community-page.css';
-@import 'pages/forum-page.css';
-@import 'pages/portfolio-page.css';
+@import 'pages/auth.css';
+@import 'pages/data-page.css';
+@import 'pages/profile-page.css';

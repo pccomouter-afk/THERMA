@@ -1,40 +1,76 @@
 <div class="nav-wrap">
-  <nav class="nav-bar" aria-label="Primary">
-    <a href="index.html" class="nav-logo">
-      <img
-        src="/assets/logo/logo-sejuka.png"
-        alt="logo_sejuka"
-        class="nav-logo-img"
-      />
-      SEJUKA
+  <nav class="nav-bar" aria-label="Navigasi utama">
+    <a href="/index.html" class="nav-logo" aria-label="THERMA beranda">
+      <span class="nav-logo-mark" aria-hidden="true"><i class="fa-solid fa-temperature-half"></i></span>
+      <span>THERMA<small>URBAN THERMAL INTELLIGENCE</small></span>
     </a>
-
     <div class="nav-links">
-      <a href="../index.html" data-nav-link="home">Beranda</a>
-      <a href="/pages/heatmap.html" data-nav-link="heatmap">Peta Panas</a>
-      <a href="/pages/cool-route.html" data-nav-link="cool-route">Rute Sejuk</a>
-      <a href="/pages/simulator.html" data-nav-link="simulator">Simulator</a>
-      <a href="/pages/community.html" data-nav-link="community">Komunitas</a>
-      <a href="/pages/forum.html" data-nav-link="forum">Forum</a>
-      <a href="/pages/portfolio.html" data-nav-link="portfolio">Portofolio</a>
+      <a href="/index.html" data-nav-link="home">Home</a>
+      <a href="/pages/map.html" data-nav-link="map">Thermal Map</a>
+      <a href="/pages/cool-route.html" data-nav-link="cool-route">Cool Route</a>
+      <a href="/pages/action.html" data-nav-link="action">Cooling Action</a>
+      <a href="/pages/data.html" data-nav-link="data">Data</a>
+      <a href="/pages/about.html" data-nav-link="about">About</a>
     </div>
-
     <div class="nav-actions">
-      <a href="heatmap.html" class="btn btn-primary btn-sm">Jelajahi Peta</a>
-      <button class="nav-burger" aria-label="Buka menu" aria-expanded="false">
-        <i class="bx bx-menu"></i>
+      <span data-auth-guest style="display:flex;gap:8px;align-items:center">
+        <a href="/pages/register.html" class="btn btn-ghost btn-sm btn-register">Register</a>
+        <a href="/pages/login.html" class="btn btn-primary btn-sm">Login</a>
+      </span>
+      <span data-auth-user style="display:none">
+        <a href="/pages/profile.html" class="nav-profile-link" data-nav-link="profile">
+          <img data-auth-avatar-img src="" alt="Foto profil" style="display:none">
+          <span class="nav-profile-fallback" data-auth-avatar-fallback>A</span>
+          <span class="nav-profile-name" data-auth-name>Pengguna</span>
+        </a>
+      </span>
+      <button class="nav-burger" aria-label="Buka menu samping" aria-expanded="false" data-drawer-open>
+        <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </nav>
 </div>
-
-<div class="mobile-menu" role="menu">
-  <a href="../index.html" data-nav-link="home">Beranda</a>
-  <a href="/pages/heatmap.html" data-nav-link="heatmap">Peta Panas</a>
-  <a href="/pages/cool-route.html" data-nav-link="cool-route">Rute Sejuk</a>
-  <a href="/pages/simulator.html" data-nav-link="simulator">Simulator</a>
-  <a href="/pages/community.html" data-nav-link="community">Komunitas</a>
-  <a href="/pages/forum.html" data-nav-link="forum">Forum</a>
-  <a href="/pages/portfolio.html" data-nav-link="portfolio">Portofolio</a>
-  <a href="/pages/about.html" data-nav-link="about">Tentang</a>
-</div>
+<div class="drawer-backdrop" data-drawer-backdrop></div>
+<aside class="drawer" aria-label="Menu samping" data-drawer>
+  <div class="drawer-head">
+    <div class="drawer-user">
+      <span data-auth-guest><span class="drawer-avatar-fallback">T</span></span>
+      <span data-auth-user style="display:none">
+        <img data-auth-avatar-img src="" alt="Foto profil" style="display:none">
+        <span class="drawer-avatar-fallback" data-auth-avatar-fallback>A</span>
+      </span>
+      <span>
+        <span class="drawer-user-name" data-auth-display>Selamat datang</span><br>
+        <span class="drawer-user-email" data-auth-sub>Jelajahi data panas kota</span>
+      </span>
+    </div>
+    <button class="icon-btn" aria-label="Tutup menu" data-drawer-close>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <nav class="drawer-links">
+    <a href="/index.html" data-nav-link="home"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="/pages/map.html" data-nav-link="map"><i class="fa-solid fa-map"></i>Thermal Map</a>
+    <a href="/pages/cool-route.html" data-nav-link="cool-route"><i class="fa-solid fa-route"></i>Cool Route</a>
+    <a href="/pages/action.html" data-nav-link="action"><i class="fa-solid fa-leaf"></i>Cooling Action</a>
+    <a href="/pages/data.html" data-nav-link="data"><i class="fa-solid fa-chart-line"></i>Data</a>
+    <a href="/pages/about.html" data-nav-link="about"><i class="fa-solid fa-circle-info"></i>About</a>
+    <a href="/pages/profile.html" data-nav-link="profile" data-auth-user style="display:none"><i class="fa-solid fa-user"></i>Profile</a>
+  </nav>
+  <div class="drawer-foot">
+    <span data-auth-guest style="display:flex;gap:8px">
+      <a href="/pages/register.html" class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">Register</a>
+      <a href="/pages/login.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Login</a>
+    </span>
+    <span data-auth-user style="display:none">
+      <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center" data-logout>Logout</button>
+    </span>
+    <p class="drawer-note">THERMA membaca kondisi termal Bali dari data cuaca aktual dan membantu memilih langkah yang lebih nyaman.</p>
+  </div>
+</aside>
+<nav class="bottom-nav" aria-label="Navigasi cepat">
+  <a href="/index.html" data-nav-link="home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+  <a href="/pages/map.html" data-nav-link="map"><i class="fa-solid fa-map"></i><span>Map</span></a>
+  <a href="/pages/cool-route.html" data-nav-link="cool-route"><i class="fa-solid fa-route"></i><span>Route</span></a>
+  <a href="/pages/action.html" data-nav-link="action"><i class="fa-solid fa-leaf"></i><span>Action</span></a>
+</nav>

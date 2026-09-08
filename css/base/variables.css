@@ -31,12 +31,15 @@
   --radius-lg: 22px;
   --radius-pill: 999px;
 
+  --space-2xs: 4px;
   --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 40px;
-  --space-xl: 64px;
-  --space-2xl: 60px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.2s;
@@ -47,20 +50,19 @@
   --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.36);
   --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.46);
 
-  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --container: 1200px;
   --nav-height: 76px;
 
   --nav-logo-height: 28px;
 
-  --font-hero: clamp(2.6rem, 6vw, 5.2rem);
-  --font-hero-sub: clamp(2.2rem, 5vw, 3.6rem);
-  --font-section: clamp(1.9rem, 3.6vw, 3.1rem);
-  --font-subtitle: 1.05rem;
-  --font-card-title: 1.25rem;
+  --font-display-xl: clamp(2.6rem, 6vw, 4.8rem);
+  --font-h1: clamp(2rem, 4.4vw, 3.2rem);
+  --font-h2: clamp(1.6rem, 3vw, 2.4rem);
+  --font-h3: clamp(1.2rem, 2vw, 1.5rem);
   --font-body-lede: clamp(1rem, 1.6vw, 1.2rem);
   --font-body-lg: 15px;
   --font-body-size: 14px;
@@ -69,8 +71,8 @@
   --font-meta: 11px;
   --font-micro: 10px;
 
-  --font-data-xl: 2.6rem;
-  --font-data-lg: 2.2rem;
+  --font-data-xl: 2.4rem;
+  --font-data-lg: 2rem;
   --font-data-md: 1.5rem;
   --font-data-sm: 14px;
 

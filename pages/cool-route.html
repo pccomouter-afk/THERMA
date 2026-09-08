@@ -1,207 +1,73 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rute Sejuk - SEJUKA</title>
-    <link rel="icon" type="image/png" href="/assets/logo/logo-sejuka.png" />
-    <meta
-      name="description"
-      content="Rencanakan jalan kaki yang menghindari panas, bukan cuma macet. Bandingkan rute tercepat dengan yang paling sejuk."
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
-    />
-    <link rel="stylesheet" href="/css/main.css" />
-  </head>
-  <body data-page="cool-route" class="route-page">
-    <a href="#main" class="skip-link">Lompat ke konten</a>
-
-    <div id="navbar-slot"></div>
-
-    <main id="main">
-      <header class="page-header reveal">
-        <p class="eyebrow">* Perencana Rute Sejuk</p>
-        <h1 class="h-display">JANGAN CUMA CARI RUTE TERCEPAT.</h1>
-        <p class="lede">
-          Bandingkan paparan panas dan cakupan keteduhan antar rute sebelum kamu
-          berangkat.
-        </p>
-      </header>
-
-      <section class="section reveal" data-route-root style="padding-top: 0">
-        <div class="sejuka-route-finder">
-          <div class="sejuka-route-finder-head">
-            <span class="sejuka-route-finder-title">Cari Rute Lebih Sejuk</span>
-            <span class="tag sejuka-hotspot-badge">DATA SIMULASI</span>
-          </div>
-          <form class="sejuka-route-finder-form" data-sejuka-route-form>
-            <div class="sejuka-route-finder-field">
-              <label for="sejuka-route-from">Lokasi Awal</label>
-              <input
-                type="text"
-                id="sejuka-route-from"
-                placeholder="Sekolah"
-                value="Sekolah"
-                data-sejuka-route-from
-              />
-            </div>
-            <div class="sejuka-route-finder-field">
-              <label for="sejuka-route-to">Tujuan</label>
-              <input
-                type="text"
-                id="sejuka-route-to"
-                placeholder="Taman Kota"
-                value="Taman Kota"
-                data-sejuka-route-to
-              />
-            </div>
-            <button
-              type="submit"
-              class="btn btn-primary sejuka-route-finder-submit"
-            >
-              Cari Rute
-            </button>
-          </form>
-        </div>
-
-        <div class="route-block">
-          <div class="route-panel">
-            <div class="route-input-group">
-              <div class="route-input">
-                <i class="bx bxs-school"></i>
-                <div class="ri-text">
-                  <span class="ri-label">Dari</span
-                  ><span class="ri-value">Sekolah</span>
-                </div>
-              </div>
-              <button
-                class="icon-btn route-swap"
-                data-route-swap
-                aria-label="Tukar lokasi"
-              >
-                <i class="bx bx-transfer-alt"></i>
-              </button>
-              <div class="route-input">
-                <i class="bx bxs-tree"></i>
-                <div class="ri-text">
-                  <span class="ri-label">Ke</span
-                  ><span class="ri-value">Taman Kota</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="route-option" data-route="fastest">
-              <div class="route-option-head">
-                <span class="r-name">Rute Tercepat</span
-                ><span class="r-time">12 menit</span>
-              </div>
-              <div class="stat-row">
-                <span>Paparan Panas</span><span>Tinggi</span>
-              </div>
-              <div class="stat-row">
-                <span>Cakupan Keteduhan</span><span>18%</span>
-              </div>
-              <div class="stat-row"><span>Jarak</span><span>1.4 km</span></div>
-              <div class="sejuka-route-temp">
-                <span>Estimasi Suhu</span
-                ><span data-sejuka-route-temp="fastest">34.7&deg;C</span>
-              </div>
-            </div>
-
-            <div class="route-option is-selected" data-route="coolest">
-              <div class="route-option-head">
-                <span class="r-name">Rute Tersejuk</span
-                ><span class="r-time">15 menit</span>
-              </div>
-              <div class="stat-row">
-                <span>Paparan Panas</span><span>Rendah</span>
-              </div>
-              <div class="stat-row">
-                <span>Cakupan Keteduhan</span><span>64%</span>
-              </div>
-              <div class="stat-row"><span>Jarak</span><span>1.7 km</span></div>
-              <div class="sejuka-route-temp">
-                <span>Estimasi Suhu</span
-                ><span data-sejuka-route-temp="coolest">31.9&deg;C</span>
-              </div>
-            </div>
-
-            <div class="route-exposure-strip">
-              <div class="exposure-chip">
-                <div class="e-label">Waktu</div>
-                <div class="e-value" data-route-time>15 menit</div>
-              </div>
-              <div class="exposure-chip">
-                <div class="e-label">Paparan</div>
-                <div class="e-value" data-route-exposure>Rendah</div>
-              </div>
-              <div class="exposure-chip">
-                <div class="e-label">Keteduhan</div>
-                <div class="e-value" data-route-shade>64%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="route-stage"></div>
-        </div>
-
-        <div class="sejuka-route-reduction">
-          <div class="sejuka-route-reduction-head">
-            <span class="sejuka-route-reduction-label"
-              >Perkiraan Pengurangan Paparan Panas</span
-            >
-            <span
-              class="sejuka-route-reduction-value"
-              data-sejuka-route-reduction
-              >-8.1%</span
-            >
-          </div>
-          <div class="sejuka-route-reduction-bar">
-            <div
-              class="sejuka-route-reduction-fill"
-              data-sejuka-route-reduction-fill
-            ></div>
-          </div>
-        </div>
-
-        <p class="route-tip">
-          <i class="bx bx-info-circle"></i>Rute disimulasikan dari model
-          keteduhan dan suhu permukaan SEJUKA untuk lingkungan ini.
-        </p>
-      </section>
-
-      <!-- CTA TO SIMULATOR / COMMUNITY -->
-      <section class="section reveal">
-        <div class="final-cta">
-          <p class="eyebrow" style="justify-content: center">
-            Langkah Berikutnya
-          </p>
-          <h2 class="h-section">
-            RUTENYA SUDAH SEJUK.<br />BAGAIMANA DENGAN AREANYA?
-          </h2>
-          <p class="lede" style="margin-left: auto; margin-right: auto">
-            Coba simulasikan intervensi pendinginan di area ini, atau lihat
-            bagaimana komunitas sudah bertindak.
-          </p>
-          <div class="hero-cta" style="justify-content: center">
-            <a href="simulator.html" class="btn btn-primary">Buka Simulator</a>
-            <a href="community.html" class="btn btn-ghost"
-              >Lihat Aksi Komunitas</a
-            >
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <div id="footer-slot"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="/js/components.js"></script>
-    <script src="/js/navigation.js"></script>
-    <script src="/js/animations.js"></script>
-    <script src="/js/cool-route.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Route — THERMA</title>
+<meta name="description" content="Hitung rute jalan kaki yang sebenarnya di Bali dan bandingkan estimasi paparan panas tiap alternatifnya.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b7de8e'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' font-family='sans-serif' font-weight='bold' fill='%230b0f0d'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="cool-route" class="route-page">
+<a href="#main" class="skip-link">Lompat ke konten</a>
+<div id="navbar-slot"></div>
+<main id="main">
+<header class="page-header reveal">
+<h1 class="h-display">Cool Route.</h1>
+<p class="lede">Masukkan lokasi awal dan tujuan di Bali. THERMA menghitung rute jalan kaki yang sebenarnya, lalu memperkirakan paparan panas di sepanjang tiap alternatif.</p>
+</header>
+<section class="section" style="padding-top:0">
+<div class="route-layout">
+<div class="route-panel reveal">
+<form data-route-form>
+<div class="route-field-row">
+<div class="field" style="margin-bottom:0">
+<label for="route-from">Lokasi awal</label>
+<input id="route-from" type="text" list="bali-areas" placeholder="mis. Denpasar" autocomplete="off" data-route-from>
+</div>
+<div class="field" style="margin-bottom:0">
+<label for="route-to">Tujuan</label>
+<input id="route-to" type="text" list="bali-areas" placeholder="mis. Sanur" autocomplete="off" data-route-to>
+</div>
+<datalist id="bali-areas" data-area-list></datalist>
+<button type="submit" class="btn btn-primary" style="justify-content:center" data-route-submit>Cari rute</button>
+</div>
+</form>
+<div class="form-status" data-route-status role="status"></div>
+<div class="route-options" data-route-options></div>
+</div>
+<div class="route-map-frame reveal">
+<div id="route-map" role="application" aria-label="Peta rute" style="position:absolute;inset:0"></div>
+</div>
+</div>
+<p class="route-tip"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Estimasi paparan panas dihitung dari permukaan termal aktual bila data tersedia. Jika tidak tersedia, THERMA menyatakannya secara eksplisit dan tidak mengarang nilai.</span></p>
+<div class="container" style="margin-top:16px">
+<p class="caption">Rute: OSRM · Lokasi: Nominatim OpenStreetMap · Kondisi termal: Open-Meteo. Peta dasar © OpenStreetMap contributors.</p>
+</div>
+</section>
+<section class="section reveal">
+<div class="final-cta">
+<h2 class="h-section">RUTENYA SUDAH DIPILIH. SEKARANG UJI AKSINYA.</h2>
+<p class="lede">Lihat intervensi apa yang bisa membuat area tujuan terasa lebih nyaman.</p>
+<a href="/pages/action.html" class="btn btn-primary">Buka Cooling Action</a>
+</div>
+</section>
+</main>
+<div id="footer-slot"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/store.js"></script>
+<script src="/js/weatherService.js"></script>
+<script src="/js/airQualityService.js"></script>
+<script src="/js/thermalService.js"></script>
+<script src="/js/routeService.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/coolRoute.js"></script>
+<script src="/js/main.js"></script>
+</body>
 </html>
