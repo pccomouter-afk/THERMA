@@ -35,7 +35,7 @@
 
   function fetchRoutes(from, to) {
     var coords = from.lon + "," + from.lat + ";" + to.lon + "," + to.lat;
-    var url = "https://router.project-osrm.org/route/v1/foot/" + coords + "?overview=full&geometries=geojson&alternatives=2&steps=false";
+    var url = "https://router.project-osrm.org/route/v1/foot/" + coords + "?overview=full&geometries=geojson&alternatives=true&steps=false";
     return fetchWithTimeout(url, { headers: { Accept: "application/json" } })
       .then(function (res) {
         if (!res.ok) throw new Error("route_unavailable");
@@ -45,7 +45,7 @@
         if (!payload || payload.code !== "Ok" || !payload.routes || !payload.routes.length) {
           throw new Error("route_unavailable");
         }
-        return payload.routes.map(function (r, i) {
+        return payload.routes.slice(0, 2).map(function (r, i) {
           return {
             id: i,
             distanceMeters: r.distance,
@@ -64,11 +64,11 @@
   }
 
   function formatDuration(minutes) {
-    if (minutes < 60) return minutes + " mnt";
+    if (minutes < 60) return minutes + " menit";
     var h = Math.floor(minutes / 60);
     var m = minutes % 60;
     if (m === 0) return h + " jam";
-    return h + " jam " + m + " mnt";
+    return h + " jam " + m + " menit";
   }
 
   window.THERMA.routeService = {

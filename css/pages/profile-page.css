@@ -20,6 +20,8 @@
 .profile-head img {
   width: 72px;
   height: 72px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   object-fit: cover;
   background: var(--green-900);
@@ -29,6 +31,7 @@
 .profile-avatar-fallback {
   width: 72px;
   height: 72px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--green-700);
   display: grid;

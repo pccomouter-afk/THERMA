@@ -112,6 +112,8 @@
 .nav-profile-link img {
   width: 30px;
   height: 30px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   object-fit: cover;
   background: var(--green-900);
@@ -120,6 +122,8 @@
 .nav-profile-link .nav-profile-fallback {
   width: 30px;
   height: 30px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   background: var(--green-700);
   color: var(--text-0);
@@ -205,6 +209,8 @@
 .drawer-user img {
   width: 44px;
   height: 44px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   object-fit: cover;
   background: var(--green-900);
@@ -213,6 +219,8 @@
 .drawer-user .drawer-avatar-fallback {
   width: 44px;
   height: 44px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   background: var(--green-700);
   display: grid;
@@ -288,6 +296,13 @@
 
 @media (max-width: 560px) {
   .nav-actions [data-auth-guest] .btn-register {
+    display: none;
+  }
+  .nav-profile-link {
+    padding: 4px;
+    gap: 0;
+  }
+  .nav-profile-link span.nav-profile-name {
     display: none;
   }
 }

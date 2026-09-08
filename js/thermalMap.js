@@ -47,7 +47,7 @@
     var el = document.querySelector("[data-detail]");
     if (!el) return;
     el.classList.add("is-empty");
-    el.innerHTML = "<h3>Belum ada area dipilih</h3><p>Pilih salah satu wilayah di atas atau klik penanda di peta untuk membaca kondisi aktualnya.</p>";
+    el.innerHTML = "<h3>Belum ada area dipilih</h3><p>Klik salah satu penanda di peta, gunakan pencarian, atau gunakan lokasimu untuk membaca kondisi aktualnya.</p>";
   }
 
   function loadingDetail(name) {
@@ -85,18 +85,11 @@
       + '<a class="btn btn-outline btn-sm" style="justify-content:center" href="/pages/cool-route.html?to=' + encodeURIComponent(area.name + ", Bali") + '">Buat rute ke sini</a>';
   }
 
-  function renderChips(areas, selectedId, onPick) {
-    var wrap = document.querySelector("[data-area-chips]");
-    if (!wrap) return;
-    wrap.innerHTML = "";
-    areas.forEach(function (a) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "area-chip" + (a.id === selectedId ? " is-on" : "");
-      b.textContent = a.name;
-      b.addEventListener("click", function () { onPick(a.id); });
-      wrap.appendChild(b);
-    });
+  function setNotice(visible) {
+    var el = document.querySelector("[data-map-notice]");
+    if (!el) return;
+    el.style.display = visible ? "" : "none";
+    if (visible) el.textContent = "Data termal sementara tidak tersedia";
   }
 
   window.THERMA.initThermalMap = function () {
@@ -133,22 +126,36 @@
 
     try {
       if (typeof L === "undefined") throw new Error("map_unavailable");
-      state.map = L.map("therma-map", { zoomControl: true }).setView([store.BALI_CENTER.lat, store.BALI_CENTER.lon], 10);
+      state.map = L.map("therma-map", { zoomControl: false }).setView([store.BALI_CENTER.lat, store.BALI_CENTER.lon], 10);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap contributors"
       }).addTo(state.map);
       store.BALI_AREAS.forEach(function (a) {
         var m = L.circleMarker([a.lat, a.lon], {
-          radius: 9,
+          radius: 6,
           color: "#0b0f0d",
           weight: 2,
           fillColor: "#b7de8e",
-          fillOpacity: 0.9
+          fillOpacity: 0.85
         }).addTo(state.map);
         m.bindTooltip(a.name, { direction: "top", offset: [0, -10] });
         m.on("click", function () { selectArea(a.id, true); });
         state.markers[a.id] = m;
+      });
+      state.map.on("click", function (e) {
+        var best = null;
+        var bestDist = Infinity;
+        store.BALI_AREAS.forEach(function (a) {
+          var dLat = e.latlng.lat - a.lat;
+          var dLon = e.latlng.lng - a.lon;
+          var d = dLat * dLat + dLon * dLon;
+          if (d < bestDist) {
+            bestDist = d;
+            best = a;
+          }
+        });
+        if (best) selectArea(best.id, false);
       });
       state.map.on("resize", debounce(function () { state.map.invalidateSize(); }, 200));
       window.addEventListener("resize", debounce(function () { state.map.invalidateSize(); }, 250));
@@ -188,13 +195,16 @@
           state.overlay = null;
         }
         if (pts.length >= 3) {
-          var grid = window.THERMA.thermalService.buildGrid(pts, bounds, 100, 70);
+          var grid = window.THERMA.thermalService.buildGrid(pts, bounds, 120, 84);
           var canvas = document.createElement("canvas");
           window.THERMA.thermalService.renderGridToCanvas(canvas, grid);
           var url = canvas.toDataURL();
-          state.overlay = L.imageOverlay(url, [[bounds.maxLat, bounds.minLon], [bounds.minLat, bounds.maxLon]], { opacity: 0.62, interactive: false });
+          state.overlay = L.imageOverlay(url, [[bounds.maxLat, bounds.minLon], [bounds.minLat, bounds.maxLon]], { opacity: 0.68, interactive: false });
           state.overlay.addTo(state.map);
           state.overlay.bringToBack();
+          setNotice(false);
+        } else {
+          setNotice(true);
         }
       } catch (e) {}
       window.THERMA._thermalPoints = pts;
@@ -211,7 +221,7 @@
       var meta = document.querySelector("[data-map-meta]");
       if (!meta) return;
       if (okCount === 0) meta.textContent = "Sumber: Open-Meteo. Data sementara tidak tersedia.";
-      else meta.textContent = "Sumber: Open-Meteo dan Open-Meteo Air Quality. " + okCount + " dari " + total + " wilayah berhasil dimuat. Estimasi kondisi termal berbasis data cuaca aktual.";
+      else meta.textContent = "Sumber: Open-Meteo dan Open-Meteo Air Quality. " + okCount + " dari " + total + " wilayah berhasil dimuat. Estimasi kondisi termal berbasis data cuaca aktual. Diperbarui " + formatTime(new Date().toISOString()) + ".";
     }
 
     function loadAllData() {
@@ -244,9 +254,8 @@
       if (!area) return;
       state.selectedId = id;
       store.mapState.selectedAreaId = id;
-      renderChips(store.BALI_AREAS, id, function (nid) { selectArea(nid, true); });
       Object.keys(state.markers).forEach(function (mid) {
-        state.markers[mid].setRadius(mid === id ? 13 : 9);
+        state.markers[mid].setRadius(mid === id ? 9 : 6);
       });
       if (fly && state.map) state.map.flyTo([area.lat, area.lon], Math.max(state.map.getZoom(), 11), { duration: 0.8 });
       var w = state.weatherById[id];
@@ -271,7 +280,6 @@
       }
     }
 
-    renderChips(store.BALI_AREAS, null, function (nid) { selectArea(nid, true); });
     emptyDetail();
     loadAllData();
 

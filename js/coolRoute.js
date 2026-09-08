@@ -33,42 +33,56 @@
     });
   }
 
-  function ensureThermalPoints() {
-    if (window.THERMA._thermalPoints && window.THERMA._thermalPoints.length >= 3) {
-      return Promise.resolve(window.THERMA._thermalPoints);
+  function ensureRouteClimate() {
+    if (window.THERMA._routeTempPoints && window.THERMA._routeTempPoints.length >= 3) {
+      return Promise.resolve(window.THERMA._routeTempPoints);
     }
     var store = window.THERMA.store;
     var jobs = store.BALI_AREAS.map(function (a) {
       return window.THERMA.weatherService.getCurrentWeather(a.lat, a.lon)
         .then(function (r) {
-          var t = window.THERMA.thermalService.thermalVisualizationIndex(r.data);
-          return t ? { lat: a.lat, lon: a.lon, value: t.score } : null;
+          if (typeof r.data.temperature !== "number") return null;
+          return { lat: a.lat, lon: a.lon, value: r.data.temperature };
         })
         .catch(function () { return null; });
     });
     return Promise.all(jobs).then(function (pts) {
       var clean = pts.filter(function (p) { return !!p; });
-      window.THERMA._thermalPoints = clean;
+      window.THERMA._routeTempPoints = clean;
       return clean;
     });
+  }
+
+  function averageTempAlongCoords(coords, tempPoints) {
+    if (!coords || !coords.length || !tempPoints || tempPoints.length < 3) return null;
+    var sum = 0;
+    var count = 0;
+    var step = Math.max(1, Math.floor(coords.length / 40));
+    for (var i = 0; i < coords.length; i += step) {
+      var v = window.THERMA.thermalService.idwValue(coords[i][0], coords[i][1], tempPoints);
+      if (v !== null && v !== undefined) {
+        sum += v;
+        count++;
+      }
+    }
+    if (!count) return null;
+    return sum / count;
+  }
+
+  function formatTemp(temp) {
+    if (temp === null || temp === undefined || !isFinite(temp)) return "Tidak tersedia";
+    return temp.toFixed(1).replace(".", ",") + "°C";
   }
 
   window.THERMA.initCoolRoutePage = function () {
     var store = window.THERMA.store;
     var map = null;
     var routeLayers = [];
-    var thermalPoints = [];
-
-    var list = document.querySelector("[data-area-list]");
-    if (list) {
-      list.innerHTML = store.BALI_AREAS.map(function (a) {
-        return '<option value="' + a.name + '"></option>';
-      }).join("");
-    }
+    var tempPoints = [];
 
     try {
       if (typeof L === "undefined") throw new Error("map_unavailable");
-      map = L.map("route-map").setView([store.BALI_CENTER.lat, store.BALI_CENTER.lon], 10);
+      map = L.map("route-map", { zoomControl: false }).setView([store.BALI_CENTER.lat, store.BALI_CENTER.lon], 10);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap contributors"
@@ -77,7 +91,7 @@
       setStatus("Peta tidak dapat dimuat saat ini.", true);
     }
 
-    ensureThermalPoints().then(function (pts) { thermalPoints = pts; });
+    ensureRouteClimate().then(function (pts) { tempPoints = pts; });
 
     var params = new URLSearchParams(window.location.search);
     var presetTo = params.get("to");
@@ -90,7 +104,7 @@
       routeLayers = [];
     }
 
-    function drawRoutes(origin, dest, routes, exposures) {
+    function drawRoutes(origin, dest, routes, selectedIdx) {
       if (!map) return;
       clearRoutes();
       var bounds = [];
@@ -99,8 +113,8 @@
         latlngs.forEach(function (ll) { bounds.push(ll); });
         var line = L.polyline(latlngs, {
           color: ROUTE_COLORS[i % ROUTE_COLORS.length],
-          weight: i === 0 ? 6 : 4,
-          opacity: i === 0 ? 0.95 : 0.6
+          weight: i === selectedIdx ? 6 : 4,
+          opacity: i === selectedIdx ? 0.95 : 0.6
         }).addTo(map);
         routeLayers.push(line);
       });
@@ -114,29 +128,50 @@
     function renderOptions(origin, dest, routes) {
       var box = document.querySelector("[data-route-options]");
       if (!box) return;
-      var exposures = routes.map(function (r) {
-        if (thermalPoints.length < 3) return null;
+      var shown = routes.slice(0, 2);
+      var temps = shown.map(function (r) {
         var coords = r.geometry.coordinates.map(function (c) { return [c[1], c[0]]; });
-        return window.THERMA.thermalService.averageExposureAlongCoordinates(coords, thermalPoints);
+        return averageTempAlongCoords(coords, tempPoints);
       });
-      var bestIdx = -1;
-      var bestScore = Infinity;
-      exposures.forEach(function (ex, i) {
-        if (ex && ex.score < bestScore) { bestScore = ex.score; bestIdx = i; }
-      });
+      var coolerIdx = -1;
+      var warmerIdx = -1;
+      if (temps[0] !== null && temps[0] !== undefined && temps[1] !== null && temps[1] !== undefined) {
+        if (temps[0] < temps[1]) {
+          coolerIdx = 0;
+          warmerIdx = 1;
+        } else if (temps[1] < temps[0]) {
+          coolerIdx = 1;
+          warmerIdx = 0;
+        }
+      } else if (temps[0] !== null && temps[0] !== undefined && shown.length === 1) {
+        coolerIdx = 0;
+      }
+      var selectedIdx = coolerIdx >= 0 ? coolerIdx : 0;
       box.innerHTML = "";
-      routes.forEach(function (r, i) {
-        var ex = exposures[i];
+      shown.forEach(function (r, i) {
+        var letter = String.fromCharCode(65 + i);
+        var badge = "";
+        var status = "Paparan tidak tersedia";
+        if (i === coolerIdx && warmerIdx >= 0) {
+          badge = '<span class="route-option-badge">Rute Lebih Sejuk</span>';
+          status = "Paparan panas lebih rendah";
+        } else if (i === warmerIdx) {
+          badge = '<span class="route-option-badge route-option-badge-warm">Rute Lebih Panas</span>';
+          status = "Paparan panas lebih tinggi";
+        } else if (i === coolerIdx && shown.length === 1) {
+          badge = '<span class="route-option-badge">Rute Lebih Sejuk</span>';
+          status = "Paparan panas " + formatTemp(temps[i]);
+        }
         var btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "route-option" + (i === (bestIdx >= 0 ? bestIdx : 0) ? " is-selected" : "");
-        var expoText = ex ? ex.score.toFixed(2).replace(".", ",") + " · " + ex.label : "Paparan tidak tersedia";
-        btn.innerHTML = '<span class="route-option-head"><span class="route-option-name">Rute ' + String.fromCharCode(65 + i) + "</span>"
-          + (i === bestIdx ? '<span class="route-option-badge">Lebih sejuk</span>' : "")
+        btn.className = "route-option" + (i === selectedIdx ? " is-selected" : "");
+        btn.innerHTML = '<span class="route-option-head"><span class="route-option-name">Rute ' + letter + "</span>"
+          + badge
           + "</span>"
           + '<div class="stat-row"><span>Jarak</span><span>' + window.THERMA.routeService.formatDistance(r.distanceKm) + "</span></div>"
-          + '<div class="stat-row"><span>Durasi jalan</span><span>' + window.THERMA.routeService.formatDuration(r.durationMinutes) + "</span></div>"
-          + '<div class="stat-row"><span>Paparan panas</span><span>' + expoText + "</span></div>";
+          + '<div class="stat-row"><span>Estimasi waktu</span><span>' + window.THERMA.routeService.formatDuration(r.durationMinutes) + "</span></div>"
+          + '<div class="stat-row"><span>Suhu paparan</span><span>' + formatTemp(temps[i]) + "</span></div>"
+          + '<div class="stat-row"><span>Status rute</span><span>' + status + "</span></div>";
         btn.addEventListener("click", function () {
           box.querySelectorAll(".route-option").forEach(function (o) { o.classList.remove("is-selected"); });
           btn.classList.add("is-selected");
@@ -144,14 +179,16 @@
         });
         box.appendChild(btn);
       });
-      store.routeState = { status: "ready", origin: origin, destination: dest, alternatives: routes, error: null };
-      drawRoutes(origin, dest, routes, exposures);
-      if (thermalPoints.length < 3) {
+      store.routeState = { status: "ready", origin: origin, destination: dest, alternatives: shown, error: null };
+      drawRoutes(origin, dest, shown, selectedIdx);
+      if (tempPoints.length < 3) {
         setStatus("Rute ditemukan. Estimasi paparan panas sedang tidak tersedia karena data termal belum lengkap.");
-      } else if (bestIdx >= 0) {
-        setStatus("Rute " + String.fromCharCode(65 + bestIdx) + " diperkirakan paling nyaman berdasarkan permukaan termal aktual.");
+      } else if (shown.length < 2) {
+        setStatus("Hanya satu rute nyata yang dikembalikan layanan untuk pasangan lokasi ini. Rekomendasi: Rute A — " + formatTemp(temps[0]) + ".");
+      } else if (coolerIdx >= 0 && warmerIdx >= 0) {
+        setStatus("Rekomendasi: Rute " + String.fromCharCode(65 + coolerIdx) + " — lebih sejuk (" + formatTemp(temps[coolerIdx]) + " berbanding " + formatTemp(temps[warmerIdx]) + ").");
       } else {
-        setStatus("Rute ditemukan.");
+        setStatus("Kedua rute mempunyai paparan panas yang setara (" + formatTemp(temps[0]) + ").");
       }
     }
 

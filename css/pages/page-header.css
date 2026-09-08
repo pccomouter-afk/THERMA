@@ -6,7 +6,7 @@
   margin-bottom: var(--space-2xl);
 }
 .page-header .h-display {
-  font-size: var(--font-hero-sub);
+  font-size: var(--font-h1);
   max-width: 18ch;
   margin-top: 12px;
 }

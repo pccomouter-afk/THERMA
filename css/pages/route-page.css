@@ -90,6 +90,10 @@
   padding: 3px 10px;
 }
 
+.route-option-badge-warm {
+  background: var(--heat-warm);
+}
+
 .route-tip {
   max-width: var(--container);
   margin: var(--space-md) auto 0;
