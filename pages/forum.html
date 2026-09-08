@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum Diskusi - SEJUKA</title>
+    <link rel="icon" type="image/png" href="/assets/logo/logo-sejuka.png" />
+    <meta
+      name="description"
+      content="Diskusikan penghijauan kota, masalah panas, ruang publik, dan teknologi cerdas bersama komunitasmu di SEJUKA."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body data-page="forum">
+    <a href="#main" class="skip-link">Lompat ke konten</a>
+
+    <div id="navbar-slot"></div>
+
+    <main id="main">
+      <header class="page-header reveal">
+        <p class="eyebrow">* Forum Diskusi</p>
+        <h1 class="h-display">NGOBROL DENGAN KOMUNITASMU.</h1>
+        <p class="lede">
+          Bagikan ide soal penghijauan, masalah panas, ruang publik, dan
+          teknologi cerdas bersama tetangga yang menghadapi masalah serupa.
+        </p>
+      </header>
+
+      <section class="section reveal" style="padding-top: 0">
+        <div class="forum-toolbar">
+          <div class="forum-search">
+            <i class="bx bx-search"></i>
+            <input
+              type="text"
+              placeholder="Cari diskusi"
+              data-forum-search
+              aria-label="Cari diskusi"
+            />
+          </div>
+          <button class="btn btn-primary">
+            <i class="bx bx-edit-alt"></i>Buat Diskusi
+          </button>
+        </div>
+
+        <div
+          class="forum-filters"
+          style="max-width: var(--container); margin: 0 auto var(--space-md)"
+        >
+          <button class="tag is-active" data-forum-filter="all">Semua</button>
+          <button class="tag" data-forum-filter="Urban Greening">
+            Penghijauan Kota
+          </button>
+          <button class="tag" data-forum-filter="Heat Problem">
+            Masalah Panas
+          </button>
+          <button class="tag" data-forum-filter="Public Space">
+            Ruang Publik
+          </button>
+          <button class="tag" data-forum-filter="Community Ideas">
+            Ide Komunitas
+          </button>
+          <button class="tag" data-forum-filter="Smart Technology">
+            Teknologi Cerdas
+          </button>
+        </div>
+
+        <div class="forum-list" data-forum-list>
+          <div
+            class="card thread-card"
+            data-category="Urban Greening"
+            data-title="Which streets need trees most this planting season?"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/maya.png" alt="MR" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Penghijauan Kota</span>
+              <h3>Jalan mana yang paling butuh pohon musim tanam ini?</h3>
+              <div class="thread-meta">
+                <span>Maya R.</span><span>4 jam lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>18</span><small>Balasan</small></div>
+              <div><span>52</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Heat Problem"
+            data-title="East Industrial Belt is unbearable by 2 PM"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/danu.jpg" alt="DK" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Masalah Panas</span>
+              <h3>
+                East Industrial Belt tak tertahankan jam 2 siang, ada ide?
+              </h3>
+              <div class="thread-meta">
+                <span>Danu K.</span><span>1 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>31</span><small>Balasan</small></div>
+              <div><span>87</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Public Space"
+            data-title="Turning the empty lot on 5th into a shaded plaza"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/sari.jpg" alt="SL" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Ruang Publik</span>
+              <h3>Mengubah lahan kosong di Jalan 5 jadi plaza teduh</h3>
+              <div class="thread-meta">
+                <span>Sari L.</span><span>2 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>12</span><small>Balasan</small></div>
+              <div><span>40</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Community Ideas"
+            data-title="Weekend tree-planting meetup, who's in?"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/joko.jpg" alt="JT" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Ide Komunitas</span>
+              <h3>Kumpul tanam pohon akhir pekan, siapa ikut?</h3>
+              <div class="thread-meta">
+                <span>Joko T.</span><span>3 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>27</span><small>Balasan</small></div>
+              <div><span>63</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Smart Technology"
+            data-title="How accurate are the sensor readings really?"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/ayu.jpg" alt="AL" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Teknologi Cerdas</span>
+              <h3>Seberapa akurat sebenarnya pembacaan sensornya?</h3>
+              <div class="thread-meta">
+                <span>Ayu N.</span><span>4 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>9</span><small>Balasan</small></div>
+              <div><span>21</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Heat Problem"
+            data-title="Bus stop on South Terrace has zero shade"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/rian.jpg" alt="RP" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Masalah Panas</span>
+              <h3>Halte bus di South Terrace sama sekali tidak teduh</h3>
+              <div class="thread-meta">
+                <span>Rian P.</span><span>5 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>15</span><small>Balasan</small></div>
+              <div><span>34</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div
+            class="card thread-card"
+            data-category="Urban Greening"
+            data-title="Best tree species for narrow sidewalks?"
+          >
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/fajar.jpg" alt="FH" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Penghijauan Kota</span>
+              <h3>Jenis pohon terbaik untuk trotoar sempit?</h3>
+              <div class="thread-meta">
+                <span>Fajar H.</span><span>1 minggu lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>22</span><small>Balasan</small></div>
+              <div><span>58</span><small>Suka</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/forum.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

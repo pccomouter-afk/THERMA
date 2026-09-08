@@ -1,0 +1,21 @@
+.route-page .route-stage {
+  min-height: 600px;
+}
+.route-tip {
+  max-width: var(--container);
+  margin: var(--space-md) auto 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: var(--font-small);
+  color: var(--text-2);
+}
+.route-tip i {
+  color: var(--lime-400);
+}
+@media (max-width: 980px) {
+  .route-page .route-stage {
+    min-height: 0;
+    aspect-ratio: 680 / 500;
+  }
+}

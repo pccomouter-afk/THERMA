@@ -1,0 +1,149 @@
+.sejuka-dataflow-section {
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.sejuka-dataflow-header {
+  max-width: var(--container);
+  margin: 0 auto var(--space-lg);
+  text-align: center;
+}
+
+.sejuka-dataflow-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--font-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.sejuka-dataflow-title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--font-section);
+  color: var(--text-0);
+}
+
+.sejuka-dataflow-subtitle {
+  margin: 14px auto 0;
+  max-width: 46ch;
+  color: var(--text-1);
+  font-size: var(--font-body-lg);
+}
+
+.sejuka-dataflow-track {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm) 0;
+}
+
+.sejuka-dataflow-step {
+  width: 148px;
+  padding: 18px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    filter 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    border-color var(--dur-med);
+}
+
+.sejuka-dataflow-step.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+  height: 150px;
+}
+
+.sejuka-dataflow-step:hover {
+  border-color: var(--border-strong);
+}
+
+.sejuka-dataflow-step-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border-radius: var(--radius-sm);
+  background: var(--green-900);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+}
+
+.sejuka-dataflow-step-icon i {
+  font-size: 18px;
+  color: var(--lime-400);
+}
+
+.sejuka-dataflow-step-name {
+  font-size: var(--font-label);
+  font-weight: var(--weight-semibold);
+  color: var(--text-0);
+  letter-spacing: 0.01em;
+}
+
+.sejuka-dataflow-step-desc {
+  margin-top: 4px;
+  font-size: var(--font-meta);
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.sejuka-dataflow-connector {
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.sejuka-dataflow-connector.is-visible {
+  opacity: 1;
+}
+
+.sejuka-dataflow-connector i {
+  font-size: 18px;
+}
+
+.sejuka-dataflow-break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+@media (max-width: 860px) {
+  .sejuka-dataflow-track {
+    flex-direction: column;
+    gap: 0;
+  }
+  .sejuka-dataflow-step {
+    width: 100%;
+    max-width: 320px;
+  }
+  .sejuka-dataflow-connector {
+    width: auto;
+    height: 26px;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 390px) {
+  .sejuka-dataflow-step {
+    padding: 16px 12px;
+  }
+}

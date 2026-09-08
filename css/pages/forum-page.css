@@ -1,0 +1,114 @@
+.forum-toolbar {
+  max-width: var(--container);
+  margin: 0 auto var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.forum-search {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.forum-search input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-0);
+  font-size: var(--font-body-size);
+}
+.forum-search i {
+  color: var(--text-2);
+}
+
+.forum-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.forum-filters .tag {
+  cursor: pointer;
+}
+
+.forum-list {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.thread-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+.thread-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--font-body-lg);
+  flex-shrink: 0;
+}
+.thread-avatar img {
+  border-radius: 50%;
+}
+
+.thread-main {
+  flex: 1;
+  min-width: 0;
+}
+.thread-main .t-cat {
+  margin-bottom: 8px;
+}
+.thread-main h3 {
+  font-size: var(--font-subtitle);
+  margin-bottom: 6px;
+}
+.thread-meta {
+  display: flex;
+  gap: var(--space-md);
+  font-size: var(--font-label);
+  color: var(--text-2);
+}
+.thread-stats {
+  display: flex;
+  gap: var(--space-md);
+  flex-shrink: 0;
+  text-align: center;
+}
+.thread-stats div span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-body-lg);
+  color: var(--text-0);
+}
+.thread-stats div small {
+  font-size: var(--font-micro);
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .thread-card {
+    flex-wrap: wrap;
+  }
+  .thread-stats {
+    width: calc(100% - 60px);
+    justify-content: flex-start;
+    margin-left: 60px;
+  }
+}

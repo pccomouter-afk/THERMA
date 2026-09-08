@@ -1,0 +1,81 @@
+:root {
+  --bg-0: #0b0f0d;
+  --bg-1: #111613;
+  --bg-2: #161c18;
+  --bg-3: #1b221d;
+
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --text-0: #f3f1ea;
+  --text-1: rgba(243, 241, 234, 0.72);
+  --text-2: rgba(243, 241, 234, 0.48);
+
+  --green-900: #16241c;
+  --green-700: #2c4a38;
+  --green-500: #4f7b5c;
+  --green-400: #6c9a78;
+  --lime-400: #b7de8e;
+  --lime-300: #cdeba6;
+
+  --heat-cool: #4f7b5c;
+  --heat-moderate: #b7de8e;
+  --heat-warm: #e8c25b;
+  --heat-hot: #e29143;
+  --heat-critical: #d65d45;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 60px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.2s;
+  --dur-med: 0.45s;
+  --dur-slow: 0.9s;
+
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.46);
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --container: 1200px;
+  --nav-height: 76px;
+
+  --nav-logo-height: 28px;
+
+  --font-hero: clamp(2.6rem, 6vw, 5.2rem);
+  --font-hero-sub: clamp(2.2rem, 5vw, 3.6rem);
+  --font-section: clamp(1.9rem, 3.6vw, 3.1rem);
+  --font-subtitle: 1.05rem;
+  --font-card-title: 1.25rem;
+  --font-body-lede: clamp(1rem, 1.6vw, 1.2rem);
+  --font-body-lg: 15px;
+  --font-body-size: 14px;
+  --font-small: 13px;
+  --font-label: 12px;
+  --font-meta: 11px;
+  --font-micro: 10px;
+
+  --font-data-xl: 2.6rem;
+  --font-data-lg: 2.2rem;
+  --font-data-md: 1.5rem;
+  --font-data-sm: 14px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+}

@@ -1,0 +1,59 @@
+.project-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+.project-visual {
+  height: 210px;
+  position: relative;
+  background: var(
+    --pc-bg,
+    linear-gradient(135deg, var(--green-900), var(--bg-2))
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-visual .ba-slider {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.project-visual .ba-side {
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  font-size: var(--font-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+}
+.project-visual .ba-before {
+  background: linear-gradient(160deg, #2a2620, #171712);
+  color: black;
+}
+.project-visual .ba-after {
+  background: linear-gradient(160deg, var(--green-900), #1a2a1f);
+  color: var(--text-1);
+}
+
+.project-body {
+  padding: var(--space-md);
+}
+.project-body .p-loc {
+  font-size: var(--font-label);
+  color: var(--text-2);
+  margin-bottom: 4px;
+}
+.project-body h3 {
+  margin-bottom: 14px;
+}
+
+@media (max-width: 620px) {
+  .project-visual {
+    height: 170px;
+  }
+}

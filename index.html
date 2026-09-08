@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEJUKA</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-sejuka.png" />
+    <meta
+      name="description"
+      content="SEJUKA adalah platform smart-community yang membantu warga melihat panas perkotaan, menemukan rute lebih sejuk, dan mengubah aksi sehari-hari menjadi dampak pendinginan yang terukur."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/sections/hero-network.css" />
+  </head>
+  <body
+    data-page="home"
+    style="overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none"
+  >
+    <a href="#main" class="skip-link">Lompat ke konten</a>
+
+    <div id="navbar-slot"></div>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-scene"></div>
+        <div class="hero-grid-lines"></div>
+        <div class="hero-skyline">
+          <svg
+            viewBox="0 0 1200 260"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="20" y="120" width="70" height="140" fill="#141B15" />
+            <rect x="110" y="80" width="50" height="180" fill="#161D17" />
+            <rect x="180" y="150" width="90" height="110" fill="#131813" />
+            <rect x="300" y="60" width="60" height="200" fill="#161D17" />
+            <rect x="390" y="110" width="80" height="150" fill="#141B15" />
+            <rect x="500" y="40" width="55" height="220" fill="#171E18" />
+            <rect x="580" y="130" width="100" height="130" fill="#131813" />
+            <rect x="710" y="90" width="65" height="170" fill="#161D17" />
+            <rect x="800" y="150" width="120" height="110" fill="#141B15" />
+            <rect x="950" y="70" width="60" height="190" fill="#171E18" />
+            <rect x="1040" y="120" width="90" height="140" fill="#131813" />
+            <rect x="1150" y="160" width="50" height="100" fill="#141B15" />
+          </svg>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-inner">
+          <div class="hero-content">
+            <h1>BUAT KOTAMU<br />LEBIH SEJUK.</h1>
+            <p class="lede">
+              Temukan titik panas, cari rute yang lebih sejuk, dan ubah
+              lingkunganmu menjadi tempat tinggal yang lebih nyaman.
+            </p>
+            <div class="hero-cta">
+              <a href="pages/heatmap.html" class="btn btn-primary"
+                >Jelajahi Peta Panas</a
+              >
+              <a href="pages/about.html" class="btn btn-ghost"
+                >Lihat Cara Kerjanya</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-network-box" aria-hidden="true">
+            <canvas id="net"></canvas>
+          </div>
+
+          <div class="hero-metrics reveal-stagger">
+            <div class="hero-metric">
+              <span class="data-figure">24</span>
+              <span class="label">Sensor Aktif</span>
+            </div>
+            <div class="hero-metric">
+              <span class="data-figure">32.8&deg;C</span>
+              <span class="label">Suhu Rata-rata</span>
+            </div>
+            <div class="hero-metric">
+              <span class="data-figure">78/100</span>
+              <span class="label">Indeks Panas Kota</span>
+            </div>
+            <div class="hero-metric">
+              <span class="data-figure">5</span>
+              <span class="label">Distrik Terpantau</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-heatmap-root>
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">* Peta Panas Perkotaan</p>
+            <h2 class="h-section">LIHAT PANASNYA.<br />PAHAMI KOTANYA.</h2>
+            <p class="lede" style="margin-top: 14px">
+              Jelajahi data lingkungan simulasi dan temukan area mana yang
+              paling membutuhkan intervensi pendinginan.
+            </p>
+          </div>
+          <a href="pages/heatmap.html" class="btn btn-outline"
+            >Buka Peta Lengkap</a
+          >
+        </div>
+
+        <div class="map-block reveal">
+          <div class="map-stage">
+            <div class="map-toolbar">
+              <div class="map-toggle-group">
+                <button class="map-toggle is-on" data-toggle-layer="heat-layer">
+                  <i class="bx bxs-thermometer"></i>Panas
+                </button>
+                <button class="map-toggle is-on" data-toggle-layer="tree-layer">
+                  <i class="bx bx-leaf"></i>Pohon
+                </button>
+                <button class="map-toggle" data-toggle-layer="cooling-layer">
+                  <i class="bx bx-water"></i>Titik Pendinginan
+                </button>
+                <button class="map-toggle" data-toggle-layer="reports-layer">
+                  <i class="bx bx-flag"></i>Laporan
+                </button>
+              </div>
+              <div class="map-zoom-group">
+                <button class="icon-btn" data-zoom-out aria-label="Perkecil">
+                  <i class="bx bx-minus"></i>
+                </button>
+                <button class="icon-btn" data-zoom-in aria-label="Perbesar">
+                  <i class="bx bx-plus"></i>
+                </button>
+                <button
+                  class="icon-btn"
+                  data-zoom-reset
+                  aria-label="Atur ulang zoom"
+                >
+                  <i class="bx bx-reset"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="map-legend">
+              <span>Sejuk</span><span class="grad-bar"></span
+              ><span>Kritis</span>
+            </div>
+
+            <div class="map-info-card glass" data-info-card>
+              <button
+                class="icon-btn modal-close"
+                data-info-close
+                aria-label="Tutup"
+                style="position: absolute; top: 12px; right: 12px"
+              >
+                <i class="bx bx-x"></i>
+              </button>
+              <div data-info-body></div>
+            </div>
+          </div>
+
+          <aside class="data-panel">
+            <div>
+              <p class="panel-title">Jaringan Sensor</p>
+              <div class="panel-stat-grid" style="margin-top: 12px">
+                <div class="panel-stat accent">
+                  <span class="data-figure">24</span
+                  ><span class="label">Sensor Aktif</span>
+                </div>
+                <div class="panel-stat">
+                  <span class="data-figure">32.8&deg;C</span
+                  ><span class="label">Suhu Rata-rata</span>
+                </div>
+                <div class="panel-stat">
+                  <span class="data-figure">78/100</span
+                  ><span class="label">Indeks Panas</span>
+                </div>
+                <div class="panel-stat">
+                  <span class="data-figure mono">14:00</span
+                  ><span class="label">Terakhir Diperbarui</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="legend-row">
+              <span class="legend-chip"
+                ><span class="dot dot-cool"></span>Sejuk</span
+              >
+              <span class="legend-chip"
+                ><span class="dot dot-moderate"></span>Sedang</span
+              >
+              <span class="legend-chip"
+                ><span class="dot dot-warm"></span>Hangat</span
+              >
+              <span class="legend-chip"
+                ><span class="dot dot-hot"></span>Panas</span
+              >
+              <span class="legend-chip"
+                ><span class="dot dot-critical"></span>Kritis</span
+              >
+            </div>
+
+            <div>
+              <p class="panel-title" style="margin-bottom: 10px">
+                Area Terpilih
+              </p>
+              <div data-panel-zone></div>
+            </div>
+
+            <div>
+              <p class="panel-title" style="margin-bottom: 10px">Feed Sensor</p>
+              <div class="sensor-list" data-sensor-list></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="sejuka-sensor-section" id="cara-kerja-sejuka">
+        <div class="sejuka-sensor-container">
+          <div class="sejuka-sensor-content">
+            <div class="sejuka-sensor-copy">
+              <p class="eyebrow">* CARA KERJA SEJUKA</p>
+              <h2 class="h-section">
+                DARI LINGKUNGAN<br />MENJADI DATA<br />YANG BERMAKNA
+              </h2>
+              <p class="lade">
+                Sensor Node SEJUKA mengumpulkan data kondisi lingkungan seperti
+                suhu, kelembapan, intensitas cahaya, dan kualitas udara dari
+                berbagai titik di kota. Data tersebut kemudian dikirim untuk
+                dianalisis dan membantu mengidentifikasi kondisi panas di
+                lingkungan perkotaan.
+              </p>
+            </div>
+
+            <div class="sejuka-sensor-media">
+              <div class="sejuka-sensor-video-card">
+                <video
+                  class="sejuka-sensor-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                >
+                  <source
+                    src="assets/videos/sensor-node.webm"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+
+              <div class="sejuka-sensor-info-grid">
+                <div class="sejuka-sensor-card sejuka-sensor-card-sht31">
+                  <div class="sejuka-sensor-card-icon">
+                    <i class="bx bxs-thermometer"></i>
+                  </div>
+                  <div class="sejuka-sensor-card-text">
+                    <span class="sejuka-sensor-card-title">SHT31</span>
+                    <span class="sejuka-sensor-card-sub"
+                      >Suhu & Kelembapan</span
+                    >
+                  </div>
+                </div>
+
+                <div class="sejuka-sensor-card sejuka-sensor-card-bh1750">
+                  <div class="sejuka-sensor-card-icon">
+                    <i class="bx bx-sun"></i>
+                  </div>
+                  <div class="sejuka-sensor-card-text">
+                    <span class="sejuka-sensor-card-title">BH1750</span>
+                    <span class="sejuka-sensor-card-sub"
+                      >Intensitas Cahaya</span
+                    >
+                  </div>
+                </div>
+
+                <div class="sejuka-sensor-card sejuka-sensor-card-pm25">
+                  <div class="sejuka-sensor-card-icon">
+                    <i class="bx bx-wind"></i>
+                  </div>
+                  <div class="sejuka-sensor-card-text">
+                    <span class="sejuka-sensor-card-title">PM2.5</span>
+                    <span class="sejuka-sensor-card-sub">Kualitas Udara</span>
+                  </div>
+                </div>
+
+                <div class="sejuka-sensor-card sejuka-sensor-card-lora">
+                  <div class="sejuka-sensor-card-icon">
+                    <i class="bx bx-broadcast"></i>
+                  </div>
+                  <div class="sejuka-sensor-card-text">
+                    <span class="sejuka-sensor-card-title">LoRa</span>
+                    <span class="sejuka-sensor-card-sub">Transmisi Data</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. HEAT EXPLANATION -->
+      <section class="section reveal">
+        <div class="container two-col-grid" style="align-items: center">
+          <div>
+            <p class="eyebrow">* KENAPA INI PENTING</p>
+            <h2 class="h-section" style="margin-top: 12px">
+              BETON MENYIMPAN PANAS.<br />POHON MELEPASKANNYA.
+            </h2>
+            <p class="lede" style="margin-top: 16px">
+              Lingkungan dengan sedikit pohon, kurang keteduhan, dan lebih
+              banyak permukaan beraspal bisa terasa beberapa derajat lebih panas
+              dibanding area hijau di sekitarnya, bahkan di jam yang sama.
+              SEJUKA mengubah perbedaan yang tak terlihat itu menjadi data yang
+              bisa ditindaklanjuti komunitasmu.
+            </p>
+          </div>
+          <div class="reveal-stagger two-col-grid-inner" style="gap: 12px">
+            <div class="card">
+              <div class="card-icon"><i class="bx bxs-city"></i></div>
+              <div class="h-card">Panas Permukaan</div>
+              <p style="font-size: 13px; margin-top: 6px">
+                Beton dan aspal padat menyerap dan memancarkan kembali panas
+                lama setelah matahari terbenam.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i class="bx bx-leaf"></i></div>
+              <div class="h-card">Kanopi Pohon</div>
+              <p style="font-size: 13px; margin-top: 6px">
+                Keteduhan dan evapotranspirasi dapat menurunkan suhu permukaan
+                tanah secara signifikan.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i class="bx bxs-flag"></i></div>
+              <div class="h-card">Data Komunitas</div>
+              <p style="font-size: 13px; margin-top: 6px">
+                Laporan warga mengisi celah di antara lokasi sensor tetap.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i class="bx bxs-bulb"></i></div>
+              <div class="h-card">Aksi Cerdas</div>
+              <p style="font-size: 13px; margin-top: 6px">
+                Setiap rekomendasi terhubung dengan dampak lokal yang terukur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. COOL ROUTE -->
+      <section class="section" data-route-root>
+        <div class="section-head reveal">
+          <div>
+            <h2 class="h-section">
+              JANGAN CUMA CARI RUTE TERCEPAT.<br />CARI YANG PALING SEJUK.
+            </h2>
+          </div>
+          <a href="pages/cool-route.html" class="btn btn-outline"
+            >Rencanakan Rute</a
+          >
+        </div>
+
+        <div class="route-block reveal">
+          <div class="route-panel">
+            <div class="route-input-group">
+              <div class="route-input">
+                <i class="bx bxs-school"></i>
+                <div class="ri-text">
+                  <span class="ri-label">Dari</span
+                  ><span class="ri-value">Sekolah</span>
+                </div>
+              </div>
+              <button
+                class="icon-btn route-swap"
+                data-route-swap
+                aria-label="Tukar lokasi"
+              >
+                <i class="bx bx-transfer-alt"></i>
+              </button>
+              <div class="route-input">
+                <i class="bx bxs-tree"></i>
+                <div class="ri-text">
+                  <span class="ri-label">Ke</span
+                  ><span class="ri-value">Taman Kota</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="route-option" data-route="fastest">
+              <div class="route-option-head">
+                <span class="r-name">Rute Tercepat</span
+                ><span class="r-time">12 menit</span>
+              </div>
+              <div class="stat-row">
+                <span>Paparan Panas</span><span>Tinggi</span>
+              </div>
+              <div class="stat-row"><span>Jarak</span><span>1.4 km</span></div>
+            </div>
+
+            <div class="route-option is-selected" data-route="coolest">
+              <div class="route-option-head">
+                <span class="r-name">Rute Tersejuk</span
+                ><span class="r-time">15 menit</span>
+              </div>
+              <div class="stat-row">
+                <span>Paparan Panas</span><span>Rendah</span>
+              </div>
+              <div class="stat-row"><span>Jarak</span><span>1.7 km</span></div>
+            </div>
+
+            <div class="route-exposure-strip">
+              <div class="exposure-chip">
+                <div class="e-label">Waktu</div>
+                <div class="e-value" data-route-time>15 menit</div>
+              </div>
+              <div class="exposure-chip">
+                <div class="e-label">Paparan</div>
+                <div class="e-value" data-route-exposure>Rendah</div>
+              </div>
+              <div class="exposure-chip">
+                <div class="e-label">Keteduhan</div>
+                <div class="e-value" data-route-shade>64%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-stage"></div>
+        </div>
+      </section>
+
+      <!-- 5. SIMULATOR -->
+      <section class="section" data-sim-root>
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">* Simulator Pendinginan Perkotaan</p>
+            <h2 class="h-section">BAGAIMANA JIKA KITA<br />UBAH KOTANYA?</h2>
+          </div>
+          <a href="pages/simulator.html" class="btn btn-outline"
+            >Buka Simulator</a
+          >
+        </div>
+
+        <div class="sim-block reveal">
+          <div class="sim-controls">
+            <div class="sim-slider-row">
+              <div class="sr-head">
+                <span class="sr-name"
+                  ><i class="bx bx-leaf"></i>Tutupan Pohon</span
+                ><span class="sr-values"
+                  ><strong data-sim-display="trees">14</strong>%</span
+                >
+              </div>
+              <input
+                type="range"
+                min="14"
+                max="70"
+                value="14"
+                data-sim-slider="trees"
+              />
+            </div>
+            <div class="sim-slider-row">
+              <div class="sr-head">
+                <span class="sr-name"
+                  ><i class="bx bx-landscape"></i>Ruang Hijau</span
+                ><span class="sr-values"
+                  ><strong data-sim-display="green">8</strong>%</span
+                >
+              </div>
+              <input
+                type="range"
+                min="8"
+                max="50"
+                value="8"
+                data-sim-slider="green"
+              />
+            </div>
+            <div class="sim-slider-row">
+              <div class="sr-head">
+                <span class="sr-name"
+                  ><i class="bx bx-leaf"></i>Struktur Peneduh</span
+                ><span class="sr-values"
+                  ><strong data-sim-display="shade">21</strong>%</span
+                >
+              </div>
+              <input
+                type="range"
+                min="21"
+                max="90"
+                value="21"
+                data-sim-slider="shade"
+              />
+            </div>
+            <div class="sim-slider-row">
+              <div class="sr-head">
+                <span class="sr-name"
+                  ><i class="bx bx-sun"></i>Permukaan Reflektif</span
+                ><span class="sr-values"
+                  ><strong data-sim-display="reflective">0</strong>%</span
+                >
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="80"
+                value="0"
+                data-sim-slider="reflective"
+              />
+            </div>
+            <div class="sim-slider-row">
+              <div class="sr-head">
+                <span class="sr-name"
+                  ><i class="bx bx-droplet"></i>Fitur Air</span
+                ><span class="sr-values"
+                  ><strong data-sim-display="water">0</strong></span
+                >
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                value="0"
+                data-sim-slider="water"
+              />
+            </div>
+            <button class="btn btn-outline sim-reset" data-sim-reset>
+              Atur Ulang Parameter
+            </button>
+          </div>
+
+          <div class="sim-results">
+            <div class="sim-compare">
+              <div class="sim-compare-card is-current">
+                <div class="sc-label">Indeks Panas Saat Ini</div>
+                <div class="sc-value" data-sim-current>84</div>
+              </div>
+              <div class="sim-compare-card is-simulated">
+                <div class="sc-label">Indeks Panas Simulasi</div>
+                <div class="sc-value" data-sim-simulated>84</div>
+              </div>
+            </div>
+            <div class="sim-heat-bar">
+              <div class="fill" data-sim-bar style="width: 100%"></div>
+            </div>
+            <div class="sim-improvement">
+              <div class="si-value" data-sim-improvement>-0.0%</div>
+              <div class="si-label">Perkiraan Peningkatan</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. AI COMMUNITY ADVISOR -->
+      <section class="section" data-advisor-root>
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">* PENASIHAT KOMUNITAS AI</p>
+            <h2 class="h-section">SARAN CERDAS UNTUK<br />LINGKUNGANMU.</h2>
+          </div>
+        </div>
+
+        <div class="advisor-block reveal">
+          <div class="advisor-issues">
+            <button class="issue-chip" data-issue="too-hot">
+              <i class="bx bxs-thermometer"></i><span>Terlalu Panas</span>
+            </button>
+            <button class="issue-chip" data-issue="low-tree">
+              <i class="bx bx-leaf"></i><span>Tutupan Pohon Rendah</span>
+            </button>
+            <button class="issue-chip" data-issue="lack-shade">
+              <i class="bx bx-sun"></i><span>Kurang Keteduhan</span>
+            </button>
+            <button class="issue-chip" data-issue="concrete-area">
+              <i class="bx bxs-city"></i><span>Area Beton Luas</span>
+            </button>
+            <button class="issue-chip" data-issue="public-space">
+              <i class="bx bx-buildings"></i
+              ><span>Ruang Publik Kurang Baik</span>
+            </button>
+          </div>
+
+          <div class="advisor-result">
+            <p class="panel-title" style="margin-bottom: 16px">
+              Rekomendasi AI
+            </p>
+            <div data-advisor-list></div>
+            <div class="advisor-impact">
+              <div class="exposure-chip">
+                <div class="e-label">Paparan Panas</div>
+                <div class="e-value" data-advisor-exposure>-16%</div>
+              </div>
+              <div class="exposure-chip">
+                <div class="e-label">Cakupan Keteduhan</div>
+                <div class="e-value" data-advisor-shade>+28%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. COOLING POINTS -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">* CARI TITIK PENDINGINAN</p>
+            <h2 class="h-section" style="margin-top: 12px">
+              KETEDUHAN, AIR,<br />DAN TEMPAT BERTEDUH TERDEKAT.
+            </h2>
+          </div>
+        </div>
+        <div class="grid-3 reveal-stagger">
+          <div class="card point-card">
+            <div class="card-head">
+              <div class="card-icon"><i class="bx bxs-book-bookmark"></i></div>
+              <span class="pill"
+                ><span class="pill-dot dot-cool"></span>Buka Sekarang</span
+              >
+            </div>
+            <div class="h-card">Perpustakaan Pusat</div>
+            <div class="p-dist">350 m dari sini</div>
+            <div class="stat-row">
+              <span><i class="bx bx-umbrella"></i>Keteduhan</span
+              ><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-droplet"></i>Air</span><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-chair"></i>Tempat Duduk</span
+              ><span>Tersedia</span>
+            </div>
+            <a
+              href="pages/community.html"
+              class="btn btn-outline btn-sm"
+              style="margin-top: 14px; width: 100%; justify-content: center"
+              >Lihat Lokasi</a
+            >
+          </div>
+          <div class="card point-card">
+            <div class="card-head">
+              <div class="card-icon"><i class="bx bxs-tree"></i></div>
+              <span class="pill"
+                ><span class="pill-dot dot-cool"></span>Buka Sekarang</span
+              >
+            </div>
+            <div class="h-card">Paviliun Taman Hijau</div>
+            <div class="p-dist">620 m dari sini</div>
+            <div class="stat-row">
+              <span><i class="bx bx-umbrella"></i>Keteduhan</span
+              ><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-droplet"></i>Air</span><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-chair"></i>Tempat Duduk</span
+              ><span>Terbatas</span>
+            </div>
+            <a
+              href="pages/community.html"
+              class="btn btn-outline btn-sm"
+              style="margin-top: 14px; width: 100%; justify-content: center"
+              >Lihat Lokasi</a
+            >
+          </div>
+          <div class="card point-card">
+            <div class="card-head">
+              <div class="card-icon"><i class="bx bxs-institution"></i></div>
+              <span class="pill"
+                ><span class="pill-dot dot-moderate"></span>Tutup 20:00</span
+              >
+            </div>
+            <div class="h-card">Balai Komunitas Riverside</div>
+            <div class="p-dist">890 m dari sini</div>
+            <div class="stat-row">
+              <span><i class="bx bx-umbrella"></i>Keteduhan</span
+              ><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-droplet"></i>Air</span><span>Tersedia</span>
+            </div>
+            <div class="stat-row">
+              <span><i class="bx bx-chair"></i>Tempat Duduk</span
+              ><span>Tersedia</span>
+            </div>
+            <a
+              href="pages/community.html"
+              class="btn btn-outline btn-sm"
+              style="margin-top: 14px; width: 100%; justify-content: center"
+              >Lihat Lokasi</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. COMMUNITY REPORTS -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">* LAPORAN KOMUNITAS</p>
+            <h2 class="h-section" style="margin-top: 12px">
+              KOTAMU JUGA<br />SEBUAH SENSOR.
+            </h2>
+          </div>
+          <button class="btn btn-primary" data-modal-open="report-modal">
+            <i class="bx bx-plus"></i>Laporkan Area
+          </button>
+        </div>
+        <div class="grid-3 reveal-stagger">
+          <div class="card report-card">
+            <div class="r-loc">
+              <i class="bx bx-map-pin"></i>Central District
+            </div>
+            <div class="r-issue">Panas Ekstrem</div>
+            <div class="r-desc">
+              Tidak ada keteduhan di sepanjang jalur pejalan kaki dekat plaza
+              utama.
+            </div>
+            <div class="r-foot">
+              <span>2 jam lalu</span
+              ><span class="tag is-active">Dilaporkan</span>
+            </div>
+          </div>
+          <div class="card report-card">
+            <div class="r-loc"><i class="bx bx-map-pin"></i>North Avenue</div>
+            <div class="r-issue">Tutupan Pohon Rendah</div>
+            <div class="r-desc">
+              Deretan pohon ditebang tahun lalu untuk pelebaran jalan, permukaan
+              terasa jauh lebih panas.
+            </div>
+            <div class="r-foot">
+              <span>1 hari lalu</span><span class="tag">Terverifikasi</span>
+            </div>
+          </div>
+          <div class="card report-card">
+            <div class="r-loc">
+              <i class="bx bx-map-pin"></i>East Industrial Belt
+            </div>
+            <div class="r-issue">Area Beton Luas</div>
+            <div class="r-desc">
+              Lahan beraspal luas yang tak terpakai cepat memanas dan
+              memancarkan panas sepanjang sore.
+            </div>
+            <div class="r-foot">
+              <span>3 hari lalu</span
+              ><span class="tag">Tindakan Direncanakan</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. COMMUNITY IMPACT -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <h2 class="h-section" style="margin-top: 12px">
+              AKSI KECIL.<br />DAMPAK TERUKUR.
+            </h2>
+          </div>
+        </div>
+        <div class="impact-strip">
+          <div class="impact-cell">
+            <div class="i-value" data-count="1284">0</div>
+            <div class="i-label">Pohon Terdukung</div>
+          </div>
+          <div class="impact-cell">
+            <div class="i-value" data-count="18420" data-suffix=" m&sup2;">
+              0
+            </div>
+            <div class="i-label">Area Teduh</div>
+          </div>
+          <div class="impact-cell">
+            <div class="i-value" data-count="32">0</div>
+            <div class="i-label">Proyek Komunitas</div>
+          </div>
+          <div class="impact-cell">
+            <div class="i-value" data-count="8421">0</div>
+            <div class="i-label">Warga Terlibat</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. COMMUNITY MISSION -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">* Misi Komunitas</p>
+            <h2 class="h-section" style="margin-top: 12px">SEJUKKAN BLOKMU.</h2>
+          </div>
+        </div>
+        <div class="mission-block">
+          <div class="mission-card">
+            <div class="mission-goal-row">
+              <span class="panel-title">Target Komunitas 100 Pohon</span
+              ><span class="mg-value">82%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 82%"></div>
+            </div>
+            <div class="mission-meta">
+              <div><strong>127</strong> Peserta</div>
+              <div>
+                <strong>+1.240 m&sup2;</strong> Perkiraan Dampak Keteduhan
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard">
+            <p class="panel-title" style="margin-bottom: 10px">
+              Papan Peringkat
+            </p>
+            <div class="lb-row">
+              <span class="lb-rank">01</span
+              ><span class="lb-name">Green District</span
+              ><span class="lb-trees">412 pohon</span>
+            </div>
+            <div class="lb-row">
+              <span class="lb-rank">02</span
+              ><span class="lb-name">Riverside Community</span
+              ><span class="lb-trees">356 pohon</span>
+            </div>
+            <div class="lb-row">
+              <span class="lb-rank">03</span
+              ><span class="lb-name">Central Neighborhood</span
+              ><span class="lb-trees">298 pohon</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. PORTFOLIO PREVIEW -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <h2 class="h-section" style="margin-top: 12px">
+              PROYEK YANG SUDAH<br />MEMBUAT PERUBAHAN.
+            </h2>
+          </div>
+          <a href="pages/portfolio.html" class="btn btn-outline"
+            >Lihat Portofolio</a
+          >
+        </div>
+        <div class="preview-strip">
+          <a
+            href="pages/portfolio.html"
+            class="preview-card"
+            style="
+              background-image: url(&quot;assets/images/green-school-coridor.png&quot;);
+              background-size: cover;
+              background-position: center;
+            "
+            ><span class="pc-tag tag is-active">Penghijauan Kota</span>
+            <div>
+              <div class="pc-title">Koridor Hijau Sekolah</div>
+              <div class="pc-meta">
+                14 pohon &middot; 320 m&sup2; teduh &middot; -12% paparan panas
+              </div>
+            </div></a
+          >
+          <a
+            href="pages/portfolio.html"
+            class="preview-card"
+            style="
+              background-image: url(&quot;assets/images/riverside_shade_walk.png&quot;);
+              background-size: cover;
+              background-position: center;
+            "
+            ><span class="pc-tag tag is-active">Ruang Publik</span>
+            <div>
+              <div class="pc-title">Jalur Teduh Riverside</div>
+              <div class="pc-meta">
+                26 pohon &middot; 540 m&sup2; teduh &middot; -18% paparan panas
+              </div>
+            </div></a
+          >
+          <a
+            href="pages/portfolio.html"
+            class="preview-card"
+            style="
+              background-image: url(&quot;assets/images/central_plaza_sensors.png&quot;);
+              background-size: cover;
+              background-position: center;
+            "
+            ><span class="pc-tag tag is-active">Teknologi Cerdas</span>
+            <div>
+              <div class="pc-title">Sensor Central Plaza</div>
+              <div class="pc-meta">
+                24 sensor &middot; data real-time &middot; -9% paparan panas
+              </div>
+            </div></a
+          >
+        </div>
+      </section>
+
+      <!-- 12. FORUM PREVIEW -->
+      <section class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">* FORUM DISKUSI</p>
+            <h2 class="h-section" style="margin-top: 12px">
+              NGOBROL DENGAN<br />KOMUNITASMU.
+            </h2>
+          </div>
+          <a href="pages/forum.html" class="btn btn-outline">Buka Forum</a>
+        </div>
+        <div class="forum-list">
+          <div class="card thread-card">
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/maya.png" alt="MR" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Penghijauan Kota</span>
+              <h3>Jalan mana yang paling butuh pohon musim tanam ini?</h3>
+              <div class="thread-meta">
+                <span>Maya R.</span><span>4 jam lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>18</span><small>Balasan</small></div>
+              <div><span>52</span><small>Suka</small></div>
+            </div>
+          </div>
+          <div class="card thread-card">
+            <div class="thread-avatar">
+              <img src="/assets/images/photo_profil/danu.jpg" alt="DK" />
+            </div>
+            <div class="thread-main">
+              <span class="tag t-cat">Masalah Panas</span>
+              <h3>
+                East Industrial Belt tak tertahankan jam 2 siang, ada ide?
+              </h3>
+              <div class="thread-meta">
+                <span>Danu K.</span><span>1 hari lalu</span>
+              </div>
+            </div>
+            <div class="thread-stats">
+              <div><span>31</span><small>Balasan</small></div>
+              <div><span>87</span><small>Suka</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. FINAL CTA -->
+      <section class="section reveal">
+        <div class="final-cta">
+          <p class="eyebrow" style="justify-content: center">Mulai Hari Ini</p>
+          <h2 class="h-section">KOTAMU BISA LEBIH SEJUK.</h2>
+          <p class="lede" style="margin-left: auto; margin-right: auto">
+            Mulai dari satu lingkungan, satu aksi, dan satu perubahan yang
+            terukur.
+          </p>
+          <a href="pages/heatmap.html" class="btn btn-primary">Jelajahi Peta</a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+
+    <!-- Report Modal -->
+    <div class="modal-layer" id="report-modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-box">
+        <button
+          class="icon-btn modal-close"
+          data-modal-close
+          aria-label="Tutup"
+        >
+          <i class="bx bx-x"></i>
+        </button>
+        <p class="eyebrow">Laporan Komunitas</p>
+        <h3 class="h-card" style="margin-top: 10px; font-size: 1.4rem">
+          Laporkan Masalah Panas
+        </h3>
+        <form data-report-form style="margin-top: var(--space-md)">
+          <div class="field">
+            <label for="loc">Lokasi</label
+            ><input
+              id="loc"
+              type="text"
+              placeholder="mis. Central District"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="issue">Jenis Masalah</label>
+            <select id="issue" required>
+              <option>Panas Ekstrem</option>
+              <option>Tutupan Pohon Rendah</option>
+              <option>Kurang Keteduhan</option>
+              <option>Area Beton Luas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="desc">Deskripsi</label
+            ><textarea
+              id="desc"
+              placeholder="Jelaskan apa yang kamu lihat"
+            ></textarea>
+          </div>
+          <div class="field">
+            <label>Unggah Foto</label>
+            <div class="upload-drop">
+              <i class="bx bx-cloud-upload"></i>
+              <div>Ketuk untuk melampirkan foto</div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width: 100%; justify-content: center"
+          >
+            Kirim Laporan
+          </button>
+          <p
+            style="margin-top: 10px; font-size: 12px; color: var(--lime-400)"
+            data-form-status
+          ></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/heatmap.js"></script>
+    <script src="js/cool-route.js"></script>
+    <script src="js/simulator.js"></script>
+    <script src="js/community.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/sensor-node.js"></script>
+    <script src="js/hero-network.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+.heatmap-page .map-stage {
+  min-height: 640px;
+}
+.filter-strip {
+  max-width: var(--container);
+  margin: 0 auto var(--space-md);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (max-width: 980px) {
+  .heatmap-page .map-stage {
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heatmap-page .map-stage {
+    min-height: 0;
+  }
+}

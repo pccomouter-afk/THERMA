@@ -1,0 +1,101 @@
+.modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--dur-med) var(--ease-out),
+    visibility var(--dur-med);
+}
+.modal-layer.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 9, 7, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transform: scale(0.94) translateY(12px);
+  opacity: 0;
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    opacity var(--dur-med) var(--ease-out);
+  box-shadow: var(--shadow-lg);
+}
+.modal-layer.is-open .modal-box {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.field {
+  margin-bottom: var(--space-sm);
+}
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-0);
+  font-size: var(--font-body-size);
+  transition: border-color var(--dur-fast);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--lime-400);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.upload-drop {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  text-align: center;
+  color: var(--text-2);
+  font-size: var(--font-small);
+}
+.upload-drop i {
+  font-size: 26px;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}

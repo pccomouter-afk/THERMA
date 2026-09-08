@@ -1,0 +1,17 @@
+.simulator-page .sim-controls,
+.simulator-page .sim-results {
+  min-height: 480px;
+}
+.sim-note {
+  max-width: var(--container);
+  margin: var(--space-md) auto 0;
+  font-size: var(--font-small);
+  color: var(--text-2);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.sim-note i {
+  color: var(--lime-400);
+  margin-top: 2px;
+}

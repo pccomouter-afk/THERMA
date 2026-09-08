@@ -1,0 +1,60 @@
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text-0);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--font-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime-400);
+  /* display: flex; */
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--lime-400);
+}
+
+.h-display {
+  font-size: var(--font-hero);
+  font-weight: var(--weight-bold);
+}
+.h-section {
+  font-size: var(--font-section);
+  font-weight: var(--weight-semibold);
+}
+.h-card {
+  font-size: var(--font-card-title);
+  font-weight: var(--weight-semibold);
+}
+
+p {
+  line-height: 1.7;
+  color: var(--text-1);
+}
+.lede {
+  font-size: var(--font-body-lede);
+  color: var(--text-1);
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+.data-figure {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.01em;
+}

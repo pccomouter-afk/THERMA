@@ -1,0 +1,65 @@
+.sejuka-hotspot-badge {
+  margin-bottom: 10px;
+}
+
+.sejuka-hotspot-temp {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 12px;
+}
+
+.sejuka-hotspot-temp-value {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: var(--font-data-lg);
+  color: var(--text-0);
+  line-height: 1;
+}
+
+.sejuka-hotspot-temp-status {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-micro);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+}
+
+.sejuka-hotspot-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sejuka-hotspot-metric {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+}
+
+.sejuka-hotspot-metric .m-label {
+  display: block;
+  font-size: var(--font-micro);
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sejuka-hotspot-metric .m-value {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: var(--font-data-sm);
+  color: var(--text-0);
+}
+
+@media (max-width: 480px) {
+  .sejuka-hotspot-temp-value {
+    font-size: 1.7rem;
+  }
+}

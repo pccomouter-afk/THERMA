@@ -1,0 +1,101 @@
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: var(--radius-lg);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  backdrop-filter: blur(14px);
+  transition:
+    border-color var(--dur-med) var(--ease-out),
+    transform var(--dur-med) var(--ease-out),
+    background var(--dur-med) var(--ease-out);
+}
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  background: var(--surface-strong);
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--green-900);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.card-icon i {
+  font-size: 20px;
+  color: var(--lime-400);
+}
+
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--font-small);
+}
+.stat-row:last-child {
+  border-bottom: none;
+}
+.stat-row span:first-child {
+  color: var(--text-2);
+}
+.stat-row span:last-child {
+  font-family: var(--font-mono);
+  color: var(--text-0);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-meta);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-cool {
+  background: var(--heat-cool);
+}
+.dot-moderate {
+  background: var(--heat-moderate);
+}
+.dot-warm {
+  background: var(--heat-warm);
+}
+.dot-hot {
+  background: var(--heat-hot);
+}
+.dot-critical {
+  background: var(--heat-critical);
+}

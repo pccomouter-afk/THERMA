@@ -1,0 +1,16 @@
+.community-page .grid-3 {
+  margin-bottom: var(--space-2xl);
+}
+.report-toolbar {
+  max-width: var(--container);
+  margin: 0 auto var(--space-md);
+  display: flex;
+  justify-content: flex-end;
+}
+.status-filter {
+  display: flex;
+  gap: 8px;
+  max-width: var(--container);
+  margin: 0 auto var(--space-md);
+  flex-wrap: wrap;
+}

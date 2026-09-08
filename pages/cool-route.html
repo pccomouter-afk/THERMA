@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rute Sejuk - SEJUKA</title>
+    <link rel="icon" type="image/png" href="/assets/logo/logo-sejuka.png" />
+    <meta
+      name="description"
+      content="Rencanakan jalan kaki yang menghindari panas, bukan cuma macet. Bandingkan rute tercepat dengan yang paling sejuk."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body data-page="cool-route" class="route-page">
+    <a href="#main" class="skip-link">Lompat ke konten</a>
+
+    <div id="navbar-slot"></div>
+
+    <main id="main">
+      <header class="page-header reveal">
+        <p class="eyebrow">* Perencana Rute Sejuk</p>
+        <h1 class="h-display">JANGAN CUMA CARI RUTE TERCEPAT.</h1>
+        <p class="lede">
+          Bandingkan paparan panas dan cakupan keteduhan antar rute sebelum kamu
+          berangkat.
+        </p>
+      </header>
+
+      <section class="section reveal" data-route-root style="padding-top: 0">
+        <div class="sejuka-route-finder">
+          <div class="sejuka-route-finder-head">
+            <span class="sejuka-route-finder-title">Cari Rute Lebih Sejuk</span>
+            <span class="tag sejuka-hotspot-badge">DATA SIMULASI</span>
+          </div>
+          <form class="sejuka-route-finder-form" data-sejuka-route-form>
+            <div class="sejuka-route-finder-field">
+              <label for="sejuka-route-from">Lokasi Awal</label>
+              <input
+                type="text"
+                id="sejuka-route-from"
+                placeholder="Sekolah"
+                value="Sekolah"
+                data-sejuka-route-from
+              />
+            </div>
+            <div class="sejuka-route-finder-field">
+              <label for="sejuka-route-to">Tujuan</label>
+              <input
+                type="text"
+                id="sejuka-route-to"
+                placeholder="Taman Kota"
+                value="Taman Kota"
+                data-sejuka-route-to
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary sejuka-route-finder-submit"
+            >
+              Cari Rute
+            </button>
+          </form>
+        </div>
+
+        <div class="route-block">
+          <div class="route-panel">
+            <div class="route-input-group">
+              <div class="route-input">
+                <i class="bx bxs-school"></i>
+                <div class="ri-text">
+                  <span class="ri-label">Dari</span
+                  ><span class="ri-value">Sekolah</span>
+                </div>
+              </div>
+              <button
+                class="icon-btn route-swap"
+                data-route-swap
+                aria-label="Tukar lokasi"
+              >
+                <i class="bx bx-transfer-alt"></i>
+              </button>
+              <div class="route-input">
+                <i class="bx bxs-tree"></i>
+                <div class="ri-text">
+                  <span class="ri-label">Ke</span
+                  ><span class="ri-value">Taman Kota</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="route-option" data-route="fastest">
+              <div class="route-option-head">
+                <span class="r-name">Rute Tercepat</span
+                ><span class="r-time">12 menit</span>
+              </div>
+              <div class="stat-row">
+                <span>Paparan Panas</span><span>Tinggi</span>
+              </div>
+              <div class="stat-row">
+                <span>Cakupan Keteduhan</span><span>18%</span>
+              </div>
+              <div class="stat-row"><span>Jarak</span><span>1.4 km</span></div>
+              <div class="sejuka-route-temp">
+                <span>Estimasi Suhu</span
+                ><span data-sejuka-route-temp="fastest">34.7&deg;C</span>
+              </div>
+            </div>
+
+            <div class="route-option is-selected" data-route="coolest">
+              <div class="route-option-head">
+                <span class="r-name">Rute Tersejuk</span
+                ><span class="r-time">15 menit</span>
+              </div>
+              <div class="stat-row">
+                <span>Paparan Panas</span><span>Rendah</span>
+              </div>
+              <div class="stat-row">
+                <span>Cakupan Keteduhan</span><span>64%</span>
+              </div>
+              <div class="stat-row"><span>Jarak</span><span>1.7 km</span></div>
+              <div class="sejuka-route-temp">
+                <span>Estimasi Suhu</span
+                ><span data-sejuka-route-temp="coolest">31.9&deg;C</span>
+              </div>
+            </div>
+
+            <div class="route-exposure-strip">
+              <div class="exposure-chip">
+                <div class="e-label">Waktu</div>
+                <div class="e-value" data-route-time>15 menit</div>
+              </div>
+              <div class="exposure-chip">
+                <div class="e-label">Paparan</div>
+                <div class="e-value" data-route-exposure>Rendah</div>
+              </div>
+              <div class="exposure-chip">
+                <div class="e-label">Keteduhan</div>
+                <div class="e-value" data-route-shade>64%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-stage"></div>
+        </div>
+
+        <div class="sejuka-route-reduction">
+          <div class="sejuka-route-reduction-head">
+            <span class="sejuka-route-reduction-label"
+              >Perkiraan Pengurangan Paparan Panas</span
+            >
+            <span
+              class="sejuka-route-reduction-value"
+              data-sejuka-route-reduction
+              >-8.1%</span
+            >
+          </div>
+          <div class="sejuka-route-reduction-bar">
+            <div
+              class="sejuka-route-reduction-fill"
+              data-sejuka-route-reduction-fill
+            ></div>
+          </div>
+        </div>
+
+        <p class="route-tip">
+          <i class="bx bx-info-circle"></i>Rute disimulasikan dari model
+          keteduhan dan suhu permukaan SEJUKA untuk lingkungan ini.
+        </p>
+      </section>
+
+      <!-- CTA TO SIMULATOR / COMMUNITY -->
+      <section class="section reveal">
+        <div class="final-cta">
+          <p class="eyebrow" style="justify-content: center">
+            Langkah Berikutnya
+          </p>
+          <h2 class="h-section">
+            RUTENYA SUDAH SEJUK.<br />BAGAIMANA DENGAN AREANYA?
+          </h2>
+          <p class="lede" style="margin-left: auto; margin-right: auto">
+            Coba simulasikan intervensi pendinginan di area ini, atau lihat
+            bagaimana komunitas sudah bertindak.
+          </p>
+          <div class="hero-cta" style="justify-content: center">
+            <a href="simulator.html" class="btn btn-primary">Buka Simulator</a>
+            <a href="community.html" class="btn btn-ghost"
+              >Lihat Aksi Komunitas</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/cool-route.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
